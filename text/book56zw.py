@@ -22,11 +22,13 @@ def search(keyword: str):
         href = raw.a.get("href")
         book_id = href[21:27].split("_")
         img = f"https://www.56zw.com/files/article/image/{book_id[0]}/{book_id[1]}/{book_id[1]}s.jpg"
+        is_end = book.select_one('td:nth-child(6)').text == "完成"
         result.append({
             "name": title,
             "author": author,
             "img": img,
-            "url": href
+            "url": href,
+            "is_end": is_end
         })
     return result
 

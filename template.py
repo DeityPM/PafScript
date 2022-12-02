@@ -11,6 +11,8 @@ def search(keyword: str):
     :return img:书本封面
 
     :return author:书本作者
+
+    :return is_end:是否完结
     """
     pass
 

@@ -15,16 +15,18 @@ def search(keyword: str):
     html = BeautifulSoup(r.text, "lxml")
     result = []
     for book in html.select('div.box_k > ul > li'):
+        img = book.select_one(".list_img").a.img.get("src")
         info = book.select_one('.list_info')
         title = info.h2.a.text
         href = info.h2.a.get("href")
         author = info.span.a.text
-        img = book.select_one(".list_img").a.img.get("src")
+        is_end = info.select_one("span.l3 > i").text == "完结"
         result.append({
             "name": title,
             "author": author,
             "img": img,
-            "url": href
+            "url": href,
+            "is_end": is_end
         })
     return result
 
