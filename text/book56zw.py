@@ -2,6 +2,11 @@ import requests
 from bs4 import BeautifulSoup
 import urllib.parse
 
+"""
+name:五六中文网
+site:https://www.56zw.com/
+"""
+
 
 def search(keyword: str):
     encode_key = urllib.parse.quote(keyword, encoding="gbk")
@@ -54,7 +59,7 @@ def detail(data: dict):
 
     html = BeautifulSoup(r.text, "lxml")
     title = html.select_one("div.bookname > h1").text
-    content = html.select_one("#content").text.replace(u'\xa0', u' ').replace(u'\r\n',"")
+    content = html.select_one("#content").text.replace(u'\xa0', u' ').replace(u'\r\n', "")
     return {
         "title": title,
         "message": content
